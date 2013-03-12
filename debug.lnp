@@ -1,0 +1,14 @@
+"debug.obj",
+"adc.obj",
+"eeprom.obj",
+"watchdog.obj",
+"START_AD.obj",
+"timer1.obj",
+"calibrate.obj",
+"led_process.obj",
+"skd.obj",
+"keyboard.obj" 
+TO "debug" 
+RAMSIZE(256) 
+CODE( 0X0000-0XF7FF )
+XDATA( 0X0000-0X07FF )
