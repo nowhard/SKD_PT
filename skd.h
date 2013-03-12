@@ -28,8 +28,6 @@ struct SKD
 		   long adc_calibr_high;//верхнее значение ацп при калибровке
 		   float calibr_high;//верхнее калибровочное значение
 		  
-		   float null_point_line_sensor;//точка отсчета
-
 		   float diap_low;//нижняя граница диапазона
 		   float diap_high;//верхняя граница диапазона
 		   

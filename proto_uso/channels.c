@@ -8,7 +8,7 @@ void ChannelsInit(void) //using 0//инициализация структуры каналов
 {
 	
 	Restore_Channels_Data();
-	if(channels[0].settings.set.type!=0 || channels[0].settings.set.modific!=3)
+	if(channels[0].settings.set.type!=0 || channels[1].settings.set.type!=0)
 	{	
 		channels[0].number=0;		  // номера каналов должны строго идти последовательно и начинаться с нуля
 		channels[0].settings.set.type=0;
@@ -81,7 +81,31 @@ void ChannelsInit(void) //using 0//инициализация структуры каналов
 		channels[7].channel_data=0;
 		channels[7].channel_data_calibrate=0;
 		channels[7].calibrate.cal.calibrate=0;
-		// КАНАЛ 9 - Частотомер 0-256 Гц
+		// КАНАЛ 9 - Логический вход
+		channels[8].number=8;		 
+		channels[8].settings.set.type=2;
+		channels[8].settings.set.modific=0;
+		channels[8].settings.set.state_byte_1=0x40;
+		channels[8].settings.set.state_byte_2=0x0A;
+		channels[8].channel_data=0x0;
+		channels[8].calibrate.cal.calibrate=0;
+		// КАНАЛ 10 - Логический выход
+		channels[9].number=9;		 
+		channels[9].settings.set.type=2;
+		channels[9].settings.set.modific=0;
+		channels[9].settings.set.state_byte_1=0x40;
+		channels[9].settings.set.state_byte_2=0x0A;
+		channels[9].channel_data=0x0;
+		channels[9].calibrate.cal.calibrate=0;
+		// КАНАЛ 11 - Логический выход
+		channels[10].number=10;		 
+		channels[10].settings.set.type=2;
+		channels[10].settings.set.modific=0;
+		channels[10].settings.set.state_byte_1=0x40;
+		channels[10].settings.set.state_byte_2=0x0A;
+		channels[10].channel_data=0x0;
+		channels[10].calibrate.cal.calibrate=0;
+/*		// КАНАЛ 9 - Частотомер 0-256 Гц
 		channels[8].number=8;		 
 		channels[8].settings.set.type=2;
 		channels[8].settings.set.modific=1;
@@ -113,7 +137,23 @@ void ChannelsInit(void) //using 0//инициализация структуры каналов
 		channels[11].settings.set.state_byte_2=0x0A;
 		channels[11].channel_data=0x0;
 		channels[11].calibrate.cal.calibrate=0;
+				// КАНАЛ 13 частота
+		channels[12].number=12;		 
+		channels[12].settings.set.type=2;
+		channels[12].settings.set.modific=0;
+		channels[12].settings.set.state_byte_1=0x40;
+		channels[12].settings.set.state_byte_2=0x0A;
+		channels[12].channel_data=0x0;
+
+				// КАНАЛ 14 частота средняя
+		channels[13].number=13;		 
+		channels[13].settings.set.type=2;
+		channels[13].settings.set.modific=0;
+		channels[13].settings.set.state_byte_1=0x40;
+		channels[13].settings.set.state_byte_2=0x0A;
+		channels[13].channel_data=0x0;		*/
 	}
+//	channels[11].channel_data=0x80008000;
 	return;
 }
 //-----------------------------------

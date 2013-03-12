@@ -3,7 +3,7 @@
 #include "eeprom/eeprom.h"
 #include "preferences.h"
 //---------------------------------------
-#define CHANNEL_NUMBER	12//количество каналов
+#define CHANNEL_NUMBER	11//количество каналов
 //---------------------------------------
 struct Channel
 {
@@ -30,15 +30,8 @@ struct Channel
 		struct
 		{
 			unsigned char calibrate;//флаг калиброванности канала
-		/*	unsigned long first_point_x;  //точки калибровки канала
-			unsigned long second_point_x;
-			unsigned long first_point_y;
-			unsigned long second_point_y;*/
-
 			float K;//
-			float C;//y=kx+c
-
-			
+			float C;//y=kx+c		
 		} cal;
 		unsigned long serialize[3];//сериализованная часть структуры
 	} calibrate;

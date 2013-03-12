@@ -170,12 +170,12 @@
           <Target51Misc>
             <MemoryModel>2</MemoryModel>
             <RTOS>0</RTOS>
-            <RomSize>1</RomSize>
+            <RomSize>2</RomSize>
             <DataHold>0</DataHold>
             <XDataHold>0</XDataHold>
             <UseOnchipRom>1</UseOnchipRom>
             <UseOnchipArithmetic>0</UseOnchipArithmetic>
-            <UseMultipleDPTR>1</UseMultipleDPTR>
+            <UseMultipleDPTR>0</UseMultipleDPTR>
             <UseOnchipXram>1</UseOnchipXram>
             <HadIRAM>1</HadIRAM>
             <HadXRAM>1</HadXRAM>
@@ -284,7 +284,7 @@
             <uAregs>1</uAregs>
             <UseInterruptVector>1</UseInterruptVector>
             <Fuzzy>3</Fuzzy>
-            <Optimize>0</Optimize>
+            <Optimize>7</Optimize>
             <WarningLevel>2</WarningLevel>
             <SizeSpeed>1</SizeSpeed>
             <ObjectExtend>1</ObjectExtend>
@@ -467,6 +467,16 @@
               <FileName>keyboard.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\keyboard.c</FilePath>
+            </File>
+            <File>
+              <FileName>proto_uso.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\proto_uso\proto_uso.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\timer3.c</FilePath>
             </File>
           </Files>
         </Group>

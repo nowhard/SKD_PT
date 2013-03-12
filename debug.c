@@ -8,10 +8,11 @@
 #include "adc.h"
 #include "dac.h"
 #include "watchdog.h"
+#include "proto_uso/proto_uso.h"
 
 #include "pt/pt.h"
 #include "keyboard.h"
-#include "ulongsort.h"
+
 #include "led_process.h"
 
 #include "calibrate/calibrate.h"
@@ -23,7 +24,7 @@ sbit BUTTON1=P3^2;
 volatile struct pt pt1, pt2,pt3,pt_key,pt_dac,pt_beep,pt_blink;
 
 extern volatile struct SKD xdata skd ;
-
+extern volatile struct pt pt_proto;
 
 //-----------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt));
@@ -46,6 +47,7 @@ void main(void) //using 0
 	ADC_Initialize();
 
 	ChannelsInit();
+	UART_Init();
 
 //	WDT_Init(WDT_2000);//включить сторожевой таймер
 
@@ -70,7 +72,7 @@ void main(void) //using 0
 		LED_Set_Brightness(INDICATOR_1,0);
 		LED_Out_Float(INDICATOR_1,0.0);	
 	}
-
+	Protocol_Init();
 	while(1)
 	{	
 		MEAN_TSK(&pt2);
@@ -78,6 +80,7 @@ void main(void) //using 0
 		LED_Process(&pt3);
 		Display_Out_Process(&pt1);
 		Keyboard_Process(&pt_key);
+		ProtoProcess(&pt_proto);
 	}
 }
 //-----------------------------------------------------------------------------
@@ -88,6 +91,7 @@ void main(void) //using 0
 	pt3.pt_time++;
 	pt_key.pt_time++;
 	pt_blink.pt_time++;
+	pt_proto.pt_time++;
 
 	TH1	= TH1_VAL; ///1000 Hz; 
 	TL1 = TL1_VAL;//
