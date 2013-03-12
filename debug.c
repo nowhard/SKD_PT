@@ -28,7 +28,6 @@ extern volatile struct pt pt_proto;
 
 //-----------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt));
-static PT_THREAD(MEAN_TSK(struct pt *pt));
 //---------------------------------------
 void main(void) //using 0
 {			   
@@ -55,7 +54,6 @@ void main(void) //using 0
 
 	EA=1;
 	PT_INIT(&pt1);
-    PT_INIT(&pt2);
 	PT_INIT(&pt3);
 	PT_INIT(&pt_key);
 	PT_INIT(&pt_blink);
@@ -75,7 +73,6 @@ void main(void) //using 0
 	Protocol_Init();
 	while(1)
 	{	
-		MEAN_TSK(&pt2);
 		LED_BlinkTask(&pt_blink);
 		LED_Process(&pt3);
 		Display_Out_Process(&pt1);
@@ -87,7 +84,6 @@ void main(void) //using 0
  void Timer1_Interrupt(void) interrupt 3  //using 1
 {
 	pt1.pt_time++;
-	pt2.pt_time++;
 	pt3.pt_time++;
 	pt_key.pt_time++;
 	pt_blink.pt_time++;
@@ -114,6 +110,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
 		   if((val<skd.SKD_Set.SKD_Settings.diap_low)||(val>skd.SKD_Set.SKD_Settings.diap_high))
 		   {
 		   		LED_SetBlink(INDICATOR_1,1);
+				LED_Set_Brightness(INDICATOR_1,0xF);
 				if(val<skd.SKD_Set.SKD_Settings.diap_low)
 				{
 					val=skd.SKD_Set.SKD_Settings.diap_low;
@@ -128,6 +125,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
 		   {
 		   		LED_SetBlink(INDICATOR_1,0);
 		   }
+		   Meaning_Process();
 		   LED_Out_Float(INDICATOR_1,val);
 	}
 	else
@@ -139,14 +137,3 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
    PT_END(pt);
  }
  //--------------------------
- static PT_THREAD(MEAN_TSK(struct pt *pt))
- {
-   PT_BEGIN(pt);
-
-  while(1) 
-  {
-		PT_DELAY(pt,10);
-		Meaning_Process();
-   }
-   PT_END(pt);
- }

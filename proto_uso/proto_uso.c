@@ -227,7 +227,7 @@ unsigned char Send_Info(void) //using 0    //посылка данных с устройства
 	   ((float*)(&TransferBuf[18]))[0]=skd.SKD_Set.SKD_Settings.diap_low; //нижняя граница
 
 	   TransferBuf[22]= skd.SKD_Set.SKD_Settings.adc_diap;
-	   ((unsigned int*)(&TransferBuf[23]))[0]=(skd.SKD_Set.SKD_Settings.indicate_time); //время индикации, мс
+	   ((unsigned int*)(&TransferBuf[23]))[0]=(skd.SKD_Set.SKD_Settings.indicate_time*10); //время индикации, мс
 
 	   for(i=0;i<5;i++)
 	   {
@@ -250,7 +250,7 @@ unsigned char  Channel_Set_Parameters(void) //using 0 //Установить параметры
 	   (skd.SKD_Set.SKD_Settings.diap_low)=((float*)(&RecieveBuf[18]))[0]; //нижняя граница
 
 	   skd.SKD_Set.SKD_Settings.adc_diap=RecieveBuf[22]&0x7;
-	  // (skd.SKD_Set.SKD_Settings.indicate_time)=((unsigned int*)(&TransferBuf[23]))[0]; //время индикации, мс
+	   (skd.SKD_Set.SKD_Settings.indicate_time)=((unsigned int*)(&RecieveBuf[23]))[0]/10; //время индикации, мс
 
 
 	   if(skd.SKD_Set.SKD_Settings.diap_high>=100.0 || skd.SKD_Set.SKD_Settings.diap_low<-100.0) //передвигаем десятичную точку
