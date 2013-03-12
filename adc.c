@@ -55,7 +55,7 @@ void ADC_ISR(void) interrupt 6 //using 1
 
 		skd.adc_sensor_queue_counter=0x0;	//сбросим счетчик
 
-		ADC0CON1=(ADC0CON1&0xF8)|(/*skd.SKD_Set.SKD_Settings.adc_diap*/LINE_SENSOR_RANGE & 0x7);//восстанавливаем усиление канала датчика
+		ADC0CON1=(ADC0CON1&0xF8)|(skd.SKD_Set.SKD_Settings.adc_diap & 0x7);//восстанавливаем усиление канала датчика
 		ADC0CON2=SENSOR_CHANNEL|(ADC0CON2&0xF8); //переключим на канал датчика		
 	}
 
@@ -79,8 +79,8 @@ void ADC_Out_Freq(unsigned int freq)  // using 0
  //------------------------------------------------------------------------------------------------------------------
  long Meaning( long mas[],unsigned char size) //using 2//находим матожидание по циклическому массиву усреднения
  {
- 	 unsigned char xdata i=0;
-	 long xdata result=0;
+ 	 static unsigned char  i=0;
+	 long  result=0;
 	 
 	//------------------------------------------	
 		for(i=0;i<size;i++)

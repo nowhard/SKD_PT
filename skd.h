@@ -4,7 +4,7 @@
 #include "eeprom/eeprom.h"
 #include "preferences.h"
 
-# define SENSOR_QUEUE_LEN 8
+#define SENSOR_QUEUE_LEN 8
 
 #define CALIBR_LOW   0.0
 #define CALIBR_HIGH 35.0

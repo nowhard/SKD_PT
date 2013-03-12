@@ -13,7 +13,7 @@ void ChannelsInit(void) //using 0//инициализация структуры каналов
 //	skd.SKD_Set.SKD_Settings.diap_low=DIAP_LOW;
 //    skd.SKD_Set.SKD_Settings.diap_high=DIAP_HIGH;//задаем явно
 //
-	skd.SKD_Set.SKD_Settings.indicate_time=INDICATE_TIME;
+//	skd.SKD_Set.SKD_Settings.indicate_time=INDICATE_TIME;
 //    skd.SKD_Set.SKD_Settings.adc_diap=0x7;
 	return;
 }

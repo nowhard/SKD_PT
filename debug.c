@@ -60,13 +60,20 @@ void main(void) //using 0
 
  	if(!SHOW_VOLTAGE)
 	{
-		LED_SetPoint(INDICATOR_1,2);
+	   if(skd.SKD_Set.SKD_Settings.diap_high>=100.0 || skd.SKD_Set.SKD_Settings.diap_low<-100.0) //передвигаем десятичную точку
+	   {
+	   		LED_SetPoint(INDICATOR_1,2);
+	   }
+	   else
+	   {
+	   		LED_SetPoint(INDICATOR_1,3);
+	   }
 		LED_Set_Brightness(INDICATOR_1,0);
 		LED_Out_Float(INDICATOR_1,0.0);
 	}
 	else
 	{
-		LED_SetPoint(INDICATOR_1,3);
+		LED_SetPoint(INDICATOR_1,4);
 		LED_Set_Brightness(INDICATOR_1,0);
 		LED_Out_Float(INDICATOR_1,0.0);	
 	}
@@ -102,7 +109,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
 
 	PT_DELAY(pt,skd.SKD_Set.SKD_Settings.indicate_time);
 	LED_Set_Brightness(INDICATOR_1,skd.brightness>>4);
- 	
+ 	Meaning_Process();
 	if(!SHOW_VOLTAGE)
 	{
 		   val=GetCalibrateVal(skd.line_sensor);
@@ -125,7 +132,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
 		   {
 		   		LED_SetBlink(INDICATOR_1,0);
 		   }
-		   Meaning_Process();
+		   
 		   LED_Out_Float(INDICATOR_1,val);
 	}
 	else
