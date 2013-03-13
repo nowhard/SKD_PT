@@ -65,7 +65,11 @@ PT_THREAD(LED_Process(struct pt *pt))
 		//-----------------предварительна€ настройка----------
 		 spi_buf[1]=indicator_decode[current_indicator];//устанавливаем decode mode
 		 spi_buf[4]=indicator_scan[current_indicator];//установим scan_limit
-		 LED_Set_Brightness(INDICATOR_1,skd.brightness>>4);//€ркость по ј÷ѕ
+
+		 if(!indicator_blink[current_indicator])
+		 {
+		 		LED_Set_Brightness(INDICATOR_1,skd.brightness>>4);//€ркость по ј÷ѕ
+		 }
 		 spi_buf[3]=indicator_brightness[current_indicator];//установим €ркость
 
 		//----------------------------------------------------

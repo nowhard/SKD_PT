@@ -53,7 +53,7 @@ void main(void) //using 0
 	ChannelsInit();
 	UART_Init();
 
-//	WDT_Init(WDT_250);//включить сторожевой таймер
+	WDT_Init(WDT_250);//включить сторожевой таймер
 
 
 
@@ -74,7 +74,7 @@ void main(void) //using 0
 	   		LED_SetPoint(INDICATOR_1,3);
 	   }
 		LED_Set_Brightness(INDICATOR_1,0);
-		LED_Out_Float(INDICATOR_1,0.0);
+		//LED_Out_Float(INDICATOR_1,0.0);
 	}
 	else
 	{
@@ -90,7 +90,7 @@ void main(void) //using 0
 		Keyboard_Process(&pt_key);
 		ProtoProcess(&pt_proto);
 		LED_BlinkTask(&pt_blink);
-	//	WDT_Clear();
+		WDT_Clear();
 	}
 }
 //-----------------------------------------------------------------------------
