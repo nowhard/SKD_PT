@@ -4,7 +4,7 @@
 #include "timer3.h"
 #include "preferences.h"
 #include "eeprom/eeprom.h"
-#include "rtos/timer1.h"
+#include "timer1.h"
 #include "adc.h"
 #include "dac.h"
 #include "watchdog.h"
@@ -48,7 +48,7 @@ void main(void) //using 0
 	ChannelsInit();
 	UART_Init();
 
-//	WDT_Init(WDT_2000);//включить сторожевой таймер
+//	WDT_Init(WDT_250);//включить сторожевой таймер
 
 
 
@@ -85,6 +85,7 @@ void main(void) //using 0
 		Display_Out_Process(&pt1);
 		Keyboard_Process(&pt_key);
 		ProtoProcess(&pt_proto);
+	//	WDT_Clear();
 	}
 }
 //-----------------------------------------------------------------------------
@@ -108,7 +109,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
   while(1) {
 
 	PT_DELAY(pt,skd.SKD_Set.SKD_Settings.indicate_time);
-	LED_Set_Brightness(INDICATOR_1,skd.brightness>>4);
+	//LED_Set_Brightness(INDICATOR_1,skd.brightness>>4);
  	Meaning_Process();
 	if(!SHOW_VOLTAGE)
 	{

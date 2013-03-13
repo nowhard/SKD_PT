@@ -5,8 +5,6 @@
 #include "preferences.h"
 #include "eeprom/eeprom.h"
 #include "proto_uso/channels.h"
-#include "rtos/core.h"
-//#include "ulongsort.h"
 #include "skd.h"
 #include <math.h>
 //#include <stdio.h>

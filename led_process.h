@@ -2,16 +2,15 @@
 #define LED_PROCESS_H
 #include <ADuC845.h>
 #include <math.h>
-//#include "rtos/core.h"
 #include "skd.h"
 #include "pt/pt.h"
 
 #define INDICATOR_NUM	1
 
 sbit CS_1=P0^5;
-sbit CS_2=P2^4;
-sbit CS_3=P2^5;
-sbit CS_4=P2^6;
+//sbit CS_2=P2^4;
+//sbit CS_3=P2^5;
+//sbit CS_4=P2^6;
 			   //каналы spi bit-bang
 sbit WR_DATA=P3^7;
 sbit CLK=P3^6;
@@ -24,8 +23,6 @@ sbit CLK=P3^6;
 #define INDICATOR_4	3
 
 //-------------------------------------------
-
-//void LED_Process(void);//главный процесс вывода
 PT_THREAD(LED_Process(struct pt *pt));
 //void LED_Out_Buf(unsigned int out_buf[], unsigned char out_buf_len);//вывод буфера в SPI bit-bang
 

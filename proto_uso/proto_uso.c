@@ -210,7 +210,7 @@ void Protocol_Init(void) //using 0
 //-----------------------------------------------------------------------------
 unsigned char Send_Info(void) //using 0    //посылка данных с устройства
 {
-	    unsigned char   idata i=0;
+	    unsigned char    i=0;
 	   									
 	   //заголовок кадра---
 	   TransferBuf[0]=0x00;
@@ -242,7 +242,7 @@ unsigned char Send_Info(void) //using 0    //посылка данных с устройства
 //-----------------------------------------------------------------------------
 unsigned char  Channel_Set_Parameters(void) //using 0 //Установить параметры 
 {
-	    unsigned char   idata i=0;
+	    unsigned char    i=0;
 	   									
 	   (skd.SKD_Set.SKD_Settings.calibr_high)=((float*)(&RecieveBuf[6]))[0]; //верхнее калибровочное значение
 	   (skd.SKD_Set.SKD_Settings.calibr_low)=((float*)(&RecieveBuf[10]))[0]; //нижнее калибровочное значение

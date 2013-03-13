@@ -3,13 +3,13 @@
 "eeprom.obj",
 "watchdog.obj",
 "START_AD.obj",
-"timer1.obj",
 "calibrate.obj",
 "led_process.obj",
 "skd.obj",
 "keyboard.obj",
 "proto_uso.obj",
-"timer3.obj" 
+"timer3.obj",
+"timer1.obj" 
 TO "debug" 
 RAMSIZE(256) 
 CODE( 0X0000-0XF7FF )

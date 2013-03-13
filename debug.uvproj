@@ -429,11 +429,6 @@
               <FilePath>.\START_AD.A51</FilePath>
             </File>
             <File>
-              <FileName>timer1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>.\rtos\timer1.c</FilePath>
-            </File>
-            <File>
               <FileName>calibrate.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\calibrate\calibrate.c</FilePath>
@@ -477,6 +472,11 @@
               <FileName>timer3.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\timer3.c</FilePath>
+            </File>
+            <File>
+              <FileName>timer1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\timer1.c</FilePath>
             </File>
           </Files>
         </Group>
