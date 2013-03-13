@@ -14,7 +14,7 @@ unsigned int   spi_buf[20]={0xC01,0x9FF,0xF00,0xA0E,0xB05,0x505,0x404,0x303,0x20
 //unsigned char  spi_buf_length=0;
 unsigned char   spi_buf_counter=0;
 
-unsigned int code init_buf[8]={0x100,0x200,0x300,0x400,0x500,0x600,0x700,0x800};
+//unsigned int code init_buf[8]={0x100,0x200,0x300,0x400,0x500,0x600,0x700,0x800};
 
 unsigned char  num_conv_counter=0;
 
@@ -72,15 +72,13 @@ PT_THREAD(LED_Process(struct pt *pt))
 		integer_num=fabs(indicator_buf[current_indicator]);	  //берем абсолютное
 		PT_YIELD(pt);
 		
-		num_conv_counter=0;
 		//------------------int to bcd------------------------
 		if(indicator_decode[current_indicator]==0x9FF)	 //если декодирование включено
 		{
-			while(num_conv_counter<=(indicator_scan[current_indicator]&0xF)) //переводим в bcd
+			for(num_conv_counter=0;(num_conv_counter<=(indicator_scan[current_indicator]&0x7));num_conv_counter++) //переводим в bcd
 			{
 				spi_buf[num_conv_counter+5]=integer_num%10|(0x100*(((indicator_scan[current_indicator]&0xF)+1)-num_conv_counter));
 				integer_num=integer_num/10;	
-				num_conv_counter++;
 				PT_YIELD(pt);
 			}
 				//-----------------------------поставим точку-----------------------------------							

@@ -212,7 +212,7 @@
             <OnChipMemories>
               <RCB>
                 <Type>0</Type>
-                <StartAddress>0x0</StartAddress>
+                <StartAddress>0xfff</StartAddress>
                 <Size>0xffff</Size>
               </RCB>
               <RXB>

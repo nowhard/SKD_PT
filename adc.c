@@ -43,7 +43,7 @@ void ADC_ISR(void) interrupt 6 //using 1
 
 		skd.adc_sensor_queue_counter++;
 
-		if(skd.adc_sensor_queue_counter==SENSOR_QUEUE_LEN)
+		if(skd.adc_sensor_queue_counter>=SENSOR_QUEUE_LEN)
 		{
 			 ADC0CON1=(ADC0CON1&0xF8)|BRIGHTNESS_RANGE;//восстанавливаем усиление канала €ркости
 			 ADC0CON2=BRIGHTNESS_CHANNEL|(ADC0CON2&0xF8); //переключим на канал €ркости		 

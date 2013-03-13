@@ -16,6 +16,9 @@
 
 #include "calibrate/calibrate.h"
 #include "skd.h"
+#include "intrins.h"
+//unsigned char code mas[8182]={0};
+//unsigned char xdata mas2[512]={0};
 
 extern volatile unsigned char  SHOW_VOLTAGE;
 sbit BUTTON1=P3^2;
@@ -28,8 +31,12 @@ extern  struct pt pt_proto;
 //-----------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt));
 //---------------------------------------
+
+
+
 void main(void) //using 0
 {			   
+	
 	EA = 0;
 		
 	PLLCON&=PLLCON_VAL;//настройка частоты процессора
