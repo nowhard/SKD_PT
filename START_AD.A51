@@ -42,7 +42,7 @@ EXSP EQU 1  ; 0 = 8-bit stack pointer in IDATA
 ; 100H. 
 ;
 ;   <o> STACKSIZE: Size of extended XRAM stack <0x0-0xFFFF>
-STACKSIZE   EQU 200H             ; set to 200H Bytes.
+STACKSIZE   EQU 0FFH             ; set to 200H Bytes.
 ;   <o> XSTACKSTART: End address of extended XRAM stack <0x0100-0xFFFF>
 ;       <i> Must be at least 0x100 larger than STACKSIZE value.
 XSTACKSTART EQU 0x800 - STACKSIZE ; 800H is top of on-chip XRAM.

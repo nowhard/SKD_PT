@@ -1,5 +1,5 @@
 #include "calibrate.h"
-extern volatile struct SKD xdata skd ;
+extern  struct SKD xdata skd ;
 //------------------------------------------------------------
 void Calibrate(unsigned char point) //общая функция калибровки
 {

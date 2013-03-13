@@ -6,9 +6,9 @@
 sbit BUTTON1=P3^2;
 sbit BUTTON2=P3^3;
 
-volatile unsigned char  SHOW_VOLTAGE=0;
+ unsigned char  SHOW_VOLTAGE=0;
 
-extern volatile struct SKD xdata skd ;
+extern  struct SKD xdata skd ;
 
 PT_THREAD(Keyboard_Process(struct pt *pt))//процесс обработки клавиатуры
 {

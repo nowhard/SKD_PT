@@ -40,26 +40,26 @@ sbit DE_RE=P3^5;
 
 //-----------------------------------------------------------------------------------
 
-volatile unsigned char xdata ADRESS_DEV=0x1;
+unsigned char  ADRESS_DEV=0x1;
 
-extern volatile unsigned char  SHOW_VOLTAGE;
+extern  unsigned char  SHOW_VOLTAGE;
 //--------------------------------global variable------------------------------------
 
-volatile unsigned char xdata	RECIEVED=0;//принято
-volatile unsigned char xdata    recieve_count;//счетчик приемного буфера
-volatile unsigned char xdata	transf_count;//счетчик передаваемых байтов	   
-volatile unsigned char xdata	buf_len;//длина передаваемого буфера
+unsigned char RECIEVED=0;//принято
+unsigned char recieve_count;//счетчик приемного буфера
+unsigned char transf_count;//счетчик передаваемых байтов	   
+unsigned char buf_len;//длина передаваемого буфера
 
-volatile unsigned char xdata    CUT_OUT_NULL=0;//флаг-вырезаем 0 после 0xD7
-volatile unsigned char xdata    frame_len=0;//длина кадра, которую вытаскиваем из шестого байта кадра
+unsigned char CUT_OUT_NULL=0;//флаг-вырезаем 0 после 0xD7
+unsigned char frame_len=0;//длина кадра, которую вытаскиваем из шестого байта кадра
 //--------------------------------------------------------------------
-volatile unsigned char xdata    RecieveBuf[MAX_LENGTH_REC_BUF]={0} ; //буфер принимаемых данных
-volatile unsigned char xdata    TransferBuf[MAX_LENGTH_REC_BUF]={0xD7};
+unsigned char    RecieveBuf[MAX_LENGTH_REC_BUF]={0} ; //буфер принимаемых данных
+unsigned char    TransferBuf[MAX_LENGTH_REC_BUF]={0xD7};
 //--------------------------------------------------------------------
-volatile unsigned char xdata    STATE_BYTE=0xC0;//байт состояния устройства
-volatile unsigned char xdata    symbol=0xFF;//принятый символ
+unsigned char    STATE_BYTE=0xC0;//байт состояния устройства
+unsigned char    symbol=0xFF;//принятый символ
 
-volatile struct pt pt_proto;
+struct pt pt_proto;
 //-----------------------------------------------------------------------------------
 #pragma OT(0,Speed)
 void UART_ISR(void) interrupt 4 //using 1
@@ -244,15 +244,46 @@ unsigned char  Channel_Set_Parameters(void) //using 0 //Установить параметры
 {
 	    unsigned char    i=0;
 	   									
-	   (skd.SKD_Set.SKD_Settings.calibr_high)=((float*)(&RecieveBuf[6]))[0]; //верхнее калибровочное значение
-	   (skd.SKD_Set.SKD_Settings.calibr_low)=((float*)(&RecieveBuf[10]))[0]; //нижнее калибровочное значение
-	   (skd.SKD_Set.SKD_Settings.diap_high)=((float*)(&RecieveBuf[14]))[0]; //верхняя граница
-	   (skd.SKD_Set.SKD_Settings.diap_low)=((float*)(&RecieveBuf[18]))[0]; //нижняя граница
+//	   (skd.SKD_Set.SKD_Settings.calibr_high)=((float*)(&RecieveBuf[6]))[0]; //верхнее калибровочное значение
+//	   (skd.SKD_Set.SKD_Settings.calibr_low)=((float*)(&RecieveBuf[10]))[0]; //нижнее калибровочное значение
+//	   (skd.SKD_Set.SKD_Settings.diap_high)=((float*)(&RecieveBuf[14]))[0]; //верхняя граница
+//	   (skd.SKD_Set.SKD_Settings.diap_low)=((float*)(&RecieveBuf[18]))[0]; //нижняя граница
+//
+//	   skd.SKD_Set.SKD_Settings.adc_diap=RecieveBuf[22]&0x7;
+//	   (skd.SKD_Set.SKD_Settings.indicate_time)=((unsigned int*)(&RecieveBuf[23]))[0]/10; //время индикации, мс
 
-	   skd.SKD_Set.SKD_Settings.adc_diap=RecieveBuf[22]&0x7;
-	   (skd.SKD_Set.SKD_Settings.indicate_time)=((unsigned int*)(&RecieveBuf[23]))[0]/10; //время индикации, мс
-
-
+	//проверка данных------------------------------------
+		if(((float*)(&RecieveBuf[10]))[0]>=CALIBR_LOW)
+		{
+			skd.SKD_Set.SKD_Settings.calibr_low =((float*)(&RecieveBuf[10]))[0];	
+		}
+		
+		if(((float*)(&RecieveBuf[6]))[0]<=CALIBR_HIGH)
+		{
+	    	skd.SKD_Set.SKD_Settings.calibr_high=((float*)(&RecieveBuf[6]))[0];
+		}
+	
+		if(((float*)(&RecieveBuf[18]))[0]>=DIAP_LOW)
+		{
+			skd.SKD_Set.SKD_Settings.diap_low=((float*)(&RecieveBuf[18]))[0];
+		}
+	
+		if(((float*)(&RecieveBuf[14]))[0]<=DIAP_HIGH)
+		{
+	    	skd.SKD_Set.SKD_Settings.diap_high=((float*)(&RecieveBuf[14]))[0];
+		}
+	
+		
+		if((((unsigned int*)(&RecieveBuf[23]))[0]/10)<=INDICATE_TIME)
+		{
+			skd.SKD_Set.SKD_Settings.indicate_time=((unsigned int*)(&RecieveBuf[23]))[0]/10;
+		}
+	
+		if((RecieveBuf[22]&0x7)<=RN_2560)
+		{
+	    	skd.SKD_Set.SKD_Settings.adc_diap=RecieveBuf[22]&0x7;
+		}
+	//-------------------------------------------------------
 	   if(skd.SKD_Set.SKD_Settings.diap_high>=100.0 || skd.SKD_Set.SKD_Settings.diap_low<-100.0) //передвигаем десятичную точку
 	   {
 	   		LED_SetPoint(INDICATOR_1,2);
@@ -301,7 +332,6 @@ PT_THREAD(ProtoProcess(struct pt *pt))
  {
 
  static unsigned char  CRC=0x0;
- static struct pt pt_handle_thread;
   PT_BEGIN(pt);
 
   while(1) 

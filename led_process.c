@@ -10,7 +10,7 @@ unsigned char  spi_bit_counter=0;//счетчик передаваемых битов при bit-bang
 unsigned int   spi_data=0;//данные bit-bang
 
 #define HEAD_LEN_7219	5
-unsigned int   spi_buf[20]={0xC01,0x9FF,0xF00,0xA0E,0xB05,0x505,0x404,0x303,0x208,0x109,0x00,0x00};
+unsigned int   spi_buf[20]={0xC01,0x9FF,0xF00,0xA0E,0xB05,0x505,0x404,0x303,0x208,0x109,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 //unsigned char  spi_buf_length=0;
 unsigned char   spi_buf_counter=0;
 
@@ -20,7 +20,7 @@ unsigned char  num_conv_counter=0;
 
 unsigned long  integer_num=0;
 
-extern volatile struct SKD xdata skd ;
+extern  struct SKD xdata skd ;
 //----------------------------------------------
  unsigned int indicator_brightness[INDICATOR_NUM]={0xA0F};//,0xA0F,0xA0F,0xA0F};
  unsigned int indicator_scan[INDICATOR_NUM]={0xB04};//,0xB07,0xB04,0xB04};
@@ -60,7 +60,7 @@ PT_THREAD(LED_Process(struct pt *pt))
    	    PT_DELAY(pt,2);
 		if(current_indicator>=INDICATOR_NUM)
 		{
-			  current_indicator=0;
+			  current_indicator=INDICATOR_1;
 		}
 		//-----------------предварительная настройка----------
 		 spi_buf[1]=indicator_decode[current_indicator];//устанавливаем decode mode
@@ -69,10 +69,10 @@ PT_THREAD(LED_Process(struct pt *pt))
 		 spi_buf[3]=indicator_brightness[current_indicator];//установим яркость
 
 		//----------------------------------------------------
-			integer_num=fabs(indicator_buf[current_indicator]);	  //берем абсолютное
-			PT_YIELD(pt);
-			
-			num_conv_counter=0;
+		integer_num=fabs(indicator_buf[current_indicator]);	  //берем абсолютное
+		PT_YIELD(pt);
+		
+		num_conv_counter=0;
 		//------------------int to bcd------------------------
 		if(indicator_decode[current_indicator]==0x9FF)	 //если декодирование включено
 		{
@@ -282,8 +282,6 @@ PT_THREAD(LED_Process(struct pt *pt))
    PT_END(pt);
 
  }
-//----------------------------------------------
-
 ////--------------------------------------------------------------------------------
 void LED_Out_Float(unsigned char  display_num,float  num)//вывод значения с плавающей точкой  //не реализовано
 {

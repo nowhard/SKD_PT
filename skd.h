@@ -7,12 +7,12 @@
 #define SENSOR_QUEUE_LEN 8
 
 #define CALIBR_LOW   0.0
-#define CALIBR_HIGH 35.0
+#define CALIBR_HIGH 1000.0
 
 #define DIAP_LOW   0.0
-#define DIAP_HIGH 40.0
+#define DIAP_HIGH 1100.0
 
-#define INDICATE_TIME	50
+#define INDICATE_TIME	200
 
 //----------------структура настроек SKD
 struct SKD

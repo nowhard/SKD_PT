@@ -6,7 +6,6 @@
 #include "eeprom/eeprom.h"
 #include "timer1.h"
 #include "adc.h"
-#include "dac.h"
 #include "watchdog.h"
 #include "proto_uso/proto_uso.h"
 
@@ -21,10 +20,10 @@
 extern volatile unsigned char  SHOW_VOLTAGE;
 sbit BUTTON1=P3^2;
 
-volatile struct pt pt1, pt2,pt3,pt_key,pt_dac,pt_beep,pt_blink;
+struct  pt pt1, pt2,pt3,pt_key,pt_dac,pt_beep,pt_blink;
 
-extern volatile struct SKD xdata skd ;
-extern volatile struct pt pt_proto;
+extern  struct SKD xdata skd ;
+extern  struct pt pt_proto;
 
 //-----------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt));
@@ -32,8 +31,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt));
 void main(void) //using 0
 {			   
 	EA = 0;
-	
-	
+		
 	PLLCON&=PLLCON_VAL;//настройка частоты процессора
 
 	if(!BUTTON1)
@@ -79,12 +77,12 @@ void main(void) //using 0
 	}
 	Protocol_Init();
 	while(1)
-	{	
-		LED_BlinkTask(&pt_blink);
+	{		
 		LED_Process(&pt3);
 		Display_Out_Process(&pt1);
 		Keyboard_Process(&pt_key);
 		ProtoProcess(&pt_proto);
+		LED_BlinkTask(&pt_blink);
 	//	WDT_Clear();
 	}
 }
@@ -109,7 +107,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
   while(1) {
 
 	PT_DELAY(pt,skd.SKD_Set.SKD_Settings.indicate_time);
-	//LED_Set_Brightness(INDICATOR_1,skd.brightness>>4);
+
  	Meaning_Process();
 	if(!SHOW_VOLTAGE)
 	{
