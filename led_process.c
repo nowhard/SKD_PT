@@ -6,17 +6,17 @@
 #include "calibrate/calibrate.h"
 //----------------------------------------------
 
-unsigned char  spi_bit_counter=0;//счетчик передаваемых битов при bit-bang
+volatile unsigned char  spi_bit_counter=0;//счетчик передаваемых битов при bit-bang
 unsigned int   spi_data=0;//данные bit-bang
 
 #define HEAD_LEN_7219	5
 unsigned int   spi_buf[20]={0xC01,0x9FF,0xF00,0xA0E,0xB05,0x505,0x404,0x303,0x208,0x109,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
 //unsigned char  spi_buf_length=0;
-unsigned char   spi_buf_counter=0;
+volatile unsigned char   spi_buf_counter=0;
 
 //unsigned int code init_buf[8]={0x100,0x200,0x300,0x400,0x500,0x600,0x700,0x800};
 
-unsigned char  num_conv_counter=0;
+volatile unsigned char  num_conv_counter=0;
 
 unsigned long  integer_num=0;
 
@@ -81,7 +81,7 @@ PT_THREAD(LED_Process(struct pt *pt))
 		{
 			for(num_conv_counter=0;(num_conv_counter<=(indicator_scan[current_indicator]&0x7));num_conv_counter++) //переводим в bcd
 			{
-				spi_buf[num_conv_counter+5]=integer_num%10|(0x100*(((indicator_scan[current_indicator]&0xF)+1)-num_conv_counter));
+				spi_buf[num_conv_counter+5]=integer_num%10|(0x100*(((indicator_scan[current_indicator]&0x7)+1)-num_conv_counter));
 				integer_num=integer_num/10;	
 				PT_YIELD(pt);
 			}
@@ -90,7 +90,7 @@ PT_THREAD(LED_Process(struct pt *pt))
 			{
 				spi_buf[5+indicator_point[current_indicator]-1]|=	0x80;  //
 				
-				for(i=/*((unsigned char)(spi_buf[4]&0x7))*/4;i>((unsigned char)(spi_buf[4]&0x7)+indicator_point[current_indicator]-5);i--)
+				for(i=(indicator_scan[current_indicator]&0x7);i>((indicator_scan[current_indicator]&0x7)+indicator_point[current_indicator]-5);i--)
 				{
 				   if((spi_buf[5+i]&0xf)==0x0)
 				   {

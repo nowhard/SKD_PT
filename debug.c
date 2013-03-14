@@ -17,13 +17,12 @@
 #include "calibrate/calibrate.h"
 #include "skd.h"
 #include "intrins.h"
-//unsigned char code mas[8182]={0};
-//unsigned char xdata mas2[512]={0};
+
 
 extern volatile unsigned char  SHOW_VOLTAGE;
 sbit BUTTON1=P3^2;
 
-struct  pt pt1, pt2,pt3,pt_key,pt_dac,pt_beep,pt_blink;
+volatile struct  pt pt_display,pt_led,pt_key,pt_dac,pt_beep,pt_blink;
 
 extern  struct SKD xdata skd ;
 extern  struct pt pt_proto;
@@ -31,8 +30,6 @@ extern  struct pt pt_proto;
 //-----------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt));
 //---------------------------------------
-
-
 
 void main(void) //using 0
 {			   
@@ -58,8 +55,8 @@ void main(void) //using 0
 
 
 	EA=1;
-	PT_INIT(&pt1);
-	PT_INIT(&pt3);
+	PT_INIT(&pt_display);
+	PT_INIT(&pt_led);
 	PT_INIT(&pt_key);
 	PT_INIT(&pt_blink);
 
@@ -85,8 +82,8 @@ void main(void) //using 0
 	Protocol_Init();
 	while(1)
 	{		
-		LED_Process(&pt3);
-		Display_Out_Process(&pt1);
+		LED_Process(&pt_led);
+		Display_Out_Process(&pt_display);
 		Keyboard_Process(&pt_key);
 		ProtoProcess(&pt_proto);
 		LED_BlinkTask(&pt_blink);
@@ -96,14 +93,16 @@ void main(void) //using 0
 //-----------------------------------------------------------------------------
  void Timer1_Interrupt(void) interrupt 3  //using 1
 {
-	pt1.pt_time++;
-	pt3.pt_time++;
+	EA=0;
+	pt_display.pt_time++;
+	pt_led.pt_time++;
 	pt_key.pt_time++;
 	pt_blink.pt_time++;
 	pt_proto.pt_time++;
 
 	TH1	= TH1_VAL; ///1000 Hz; 
 	TL1 = TL1_VAL;//
+	EA=1;
 }
 //-----------------------------------------------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt))

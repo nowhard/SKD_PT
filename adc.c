@@ -34,6 +34,7 @@ void ADC_Initialize() //using 0
 //-------------------------------------------
 void ADC_ISR(void) interrupt 6 //using 1
 {
+EA=0;
 	if(skd.adc_sensor_queue_counter<SENSOR_QUEUE_LEN)
 	{
 		skd.ADC_SENSOR_UN[skd.adc_sensor_queue_counter].ADC_CHAR[0]=0x0;//получим результат	датчика
@@ -60,7 +61,7 @@ void ADC_ISR(void) interrupt 6 //using 1
 	}
 
 	RDY0=0;
-
+ EA=1;
 	return;
 }
 //--------------------------------------------------
@@ -85,7 +86,9 @@ void ADC_Out_Freq(unsigned int freq)  // using 0
 	//------------------------------------------	
 		for(i=0;i<size;i++)
 		{
+			EADC=0;//момент чтения массива ацп
 			result+=mas[i];
+			EADC=1;
 		}							
 		result=(long)(result/(size));		
 	return result;	   

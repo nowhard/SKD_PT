@@ -4,7 +4,6 @@
 #include <ADuC845.h>
 #include "preferences.h"
 #include "eeprom/eeprom.h"
-#include "proto_uso/channels.h"
 #include "skd.h"
 #include <math.h>
 //#include <stdio.h>

@@ -1,7 +1,7 @@
 #include "skd.h"
 #include "adc.h"
 //-----------------------------------
-struct SKD xdata skd ;
+volatile struct SKD xdata skd ;
 //-----------------------------------
 void ChannelsInit(void) //using 0//инициализация структуры каналов
 {	

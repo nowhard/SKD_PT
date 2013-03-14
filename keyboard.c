@@ -23,7 +23,7 @@ PT_THREAD(Keyboard_Process(struct pt *pt))//процесс обработки клавиатуры
 		}
 		
 				
-		PT_DELAY(pt,10);	//задержка обработки
+		PT_DELAY(pt,50);	//задержка обработки
 	
 		if(!BUTTON1)
 		{

@@ -59,7 +59,7 @@ unsigned char    TransferBuf[MAX_LENGTH_REC_BUF]={0xD7};
 unsigned char    STATE_BYTE=0xC0;//байт состояния устройства
 unsigned char    symbol=0xFF;//принятый символ
 
-struct pt pt_proto;
+volatile struct pt pt_proto;
 //-----------------------------------------------------------------------------------
 #pragma OT(0,Speed)
 void UART_ISR(void) interrupt 4 //using 1
