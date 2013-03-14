@@ -22,7 +22,7 @@
 extern volatile unsigned char  SHOW_VOLTAGE;
 sbit BUTTON1=P3^2;
 
-volatile struct  pt pt_display,pt_led,pt_key,pt_dac,pt_beep,pt_blink;
+volatile struct  pt pt_display,pt_led,pt_key,pt_blink;
 
 extern  struct SKD xdata skd ;
 extern  struct pt pt_proto;

@@ -97,7 +97,7 @@ IBPSTACKTOP	EQU	0FFH+1	; set top of stack to highest location+1.
 ; <h>  Stack space for reentrant functions in the LARGE model.	
 ;  <q> XBPSTACK: Enable LARGE model reentrant stack
 ;     <i> Stack space for reentrant functions in the LARGE model.
-XBPSTACK	EQU	1	; set to 1 if large reentrant is used.
+XBPSTACK	EQU	0	; set to 1 if large reentrant is used.
 ;  <o> XBPSTACKTOP: End address of LARGE model stack <0x0-0xFFFF>
 ;     <i> Set the top of the stack to the highest location.
 XBPSTACKTOP	EQU	800H+1; set top of stack to highest location+1.

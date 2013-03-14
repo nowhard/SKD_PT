@@ -46,9 +46,9 @@ extern  unsigned char  SHOW_VOLTAGE;
 //--------------------------------global variable------------------------------------
 
 unsigned char RECIEVED=0;//принято
-unsigned char recieve_count;//счетчик приемного буфера
-unsigned char transf_count;//счетчик передаваемых байтов	   
-unsigned char buf_len;//длина передаваемого буфера
+unsigned char recieve_count=0;//счетчик приемного буфера
+unsigned char transf_count=0;//счетчик передаваемых байтов	   
+unsigned char buf_len=0;//длина передаваемого буфера
 
 unsigned char CUT_OUT_NULL=0;//флаг-вырезаем 0 после 0xD7
 unsigned char frame_len=0;//длина кадра, которую вытаскиваем из шестого байта кадра

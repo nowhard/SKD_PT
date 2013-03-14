@@ -1,6 +1,6 @@
 #include "watchdog.h"
 //---------------------global variables-----------------------------------
-volatile unsigned char data wdt_intval;
+unsigned char  wdt_intval;
 //------------------------------------------------------------------------
 void WDT_Init(unsigned char interval) //using 0//установка интервала срабатывания сторожевого таймера, запуск	//небезопасная
 {

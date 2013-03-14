@@ -5,6 +5,17 @@ volatile struct SKD xdata skd ;
 //-----------------------------------
 void ChannelsInit(void) //using 0//инициализация структуры каналов
 {	
+	
+	unsigned char i=0;
+	for(i=0;i<SENSOR_QUEUE_LEN;i++)
+	{
+		skd.ADC_SENSOR_UN[i].ADC_LONG=0;
+	}
+
+	skd.adc_sensor_queue_counter=0;
+	skd.line_sensor=0;
+	skd.brightness=0;
+
 	Restore_Channels_Data();
 	//добавить приведение даннных к значению по умолчанию в случае ошибочных значений
 	if(skd.SKD_Set.SKD_Settings.calibr_low<CALIBR_LOW || skd.SKD_Set.SKD_Settings.calibr_low>=CALIBR_HIGH)
