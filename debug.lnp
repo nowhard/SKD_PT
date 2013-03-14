@@ -10,7 +10,7 @@
 "proto_uso.obj",
 "timer3.obj",
 "timer1.obj" 
-TO "debug" REGFILE (.\debug.ORC) 
+TO "debug" 
 RAMSIZE(256) 
 CODE( 0X0000-0XF7FF )
 XDATA( 0X0000-0X07FF )

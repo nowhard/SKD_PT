@@ -48,7 +48,7 @@ extern  struct SKD xdata skd ;
 //	unsigned char point_2;
 //    unsigned char invert;
 //} volatile led_bar;
- #pragma OT(0,Speed) 
+// #pragma OT(0,Speed) 
 //----------------------------------------------
 PT_THREAD(LED_Process(struct pt *pt))
  {

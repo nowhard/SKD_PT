@@ -107,25 +107,6 @@
 
 #define ADC_CALIBRATE_ADDR		0x50
 //----------------------------interfaces--------------------------------
-#define RS_232
-//#define RS_485
-//----------------------------------------------------------------------
-//----------тайминги циклических процессов-----------------------------
-#ifdef 	F_OSC_12
-	#define GET_MID_TIM 		20	
-	#define FRQ_MEAS_PROC_TIM	50
-	#define SEC_TSK_TIM			200
-	#define SK_TSK_TIM			50
-	#define BLINK_TIM			200
 
-#endif
-
-#ifdef F_OSC_6
-	#define GET_MID_TIM 		10	
-	#define FRQ_MEAS_PROC_TIM	25
-	#define SEC_TSK_TIM			100
-	#define SK_TSK_TIM			25
-	#define BLINK_TIM			100
-#endif
 //---------------------------------------------------------------------
 #endif
