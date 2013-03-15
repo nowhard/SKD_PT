@@ -1,14 +1,7 @@
 "debug.obj",
-"adc.obj",
-"eeprom.obj",
-"watchdog.obj",
 "START_AD.obj",
-"calibrate.obj",
 "led_process.obj",
-"skd.obj",
 "keyboard.obj",
-"proto_uso.obj",
-"timer3.obj",
 "timer1.obj" 
 TO "debug" 
 RAMSIZE(256) 
