@@ -4,7 +4,8 @@
 //#pragma NOAREGS
 
 //#define F_OSC_12  12582912UL//частота ядра-12MHz
-#define F_OSC_6 6291456
+#define F_OSC_6 	6291456
+//#define F_OSC_1_5	1572864
 
 
 //#define BAUDRATE_9600
@@ -44,6 +45,12 @@
 		#define T3CON_VAL	0x82
 		#define T3FD_VAL	0x2D
 	#endif
+
+	#ifdef F_OSC_1_5
+
+		#define T3CON_VAL	0x80
+		#define T3FD_VAL	0x2D
+	#endif
 #endif
 
 #ifdef 	BAUDRATE_38400 //
@@ -77,6 +84,17 @@
 	#define TL1_VAL		0xD0//0xE1
 
 	#define F_OSC F_OSC_6
+#endif
+
+#ifdef F_OSC_1_5
+
+ 	#define PLLCON_VAL 0xFB
+
+	#define TH0_VAL 0xFF //1000Hz
+	#define TL0_VAL 0xFF
+
+	#define TH1_VAL 	0xE2
+	#define TL1_VAL		0xB4//0xE1
 #endif
 //----------------------------------------------------------------------
 

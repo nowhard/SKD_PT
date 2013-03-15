@@ -280,6 +280,7 @@ PT_THREAD(LED_Process(struct pt *pt))
 			current_indicator++;
 
 			//----------------------------------------------------
+			PT_RESTART(pt);
   }
    PT_END(pt);
 

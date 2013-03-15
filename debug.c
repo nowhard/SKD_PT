@@ -22,7 +22,7 @@
 extern volatile unsigned char  SHOW_VOLTAGE;
 sbit BUTTON1=P3^2;
 
-volatile struct  pt pt_display,pt_led,pt_key,pt_blink;
+volatile struct  pt data pt_display,pt_led,pt_key,pt_blink;
 
 extern  struct SKD xdata skd ;
 extern  struct pt pt_proto;
@@ -50,7 +50,7 @@ void main(void) //using 0
 	ChannelsInit();
 	UART_Init();
 
-	WDT_Init(WDT_250);//включить сторожевой таймер
+//	WDT_Init(WDT_250);//включить сторожевой таймер
 
 
 
@@ -87,7 +87,7 @@ void main(void) //using 0
 		Keyboard_Process(&pt_key);
 		ProtoProcess(&pt_proto);
 		LED_BlinkTask(&pt_blink);
-		WDT_Clear();
+	//	WDT_Clear();
 	}
 }
 //-----------------------------------------------------------------------------
@@ -144,7 +144,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
 	{
 	  	LED_Out_Float(INDICATOR_1,GetVoltage());
 	}
-	
+	PT_RESTART(pt);
    }
    PT_END(pt);
  }

@@ -29,7 +29,7 @@ XRAMEN EQU 1  ; 0 = Disable on-chip XDATA RAM
 ;
 ; <e> EXSP: Enable extended XRAM stack (16-bit Stack Pointer)
 ;           <i> NOTE: The Extended Stack Mode works only with enabled on-chip XDATA RAM!
-EXSP EQU 1  ; 0 = 8-bit stack pointer in IDATA
+EXSP EQU 0  ; 0 = 8-bit stack pointer in IDATA
 ;             1 = 16-bit stack pointer in XDATA
 ;
 ; CPU Stack Size Definition in Extended Stack Mode:

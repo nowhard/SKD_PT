@@ -44,7 +44,8 @@ PT_THREAD(Keyboard_Process(struct pt *pt))//процесс обработки клавиатуры
 			  	Calibrate(2);
 				PT_WAIT_WHILE(pt,BUTTON2);
 			}	
-		}		
+		}
+		PT_RESTART(pt);		
   }
 
   PT_END(pt);

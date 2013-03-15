@@ -395,6 +395,7 @@ PT_THREAD(ProtoProcess(struct pt *pt))
 			
 			PT_DELAY(pt,50);		
 		}
+		PT_RESTART(pt);
   //-----------------------------
   }
 
