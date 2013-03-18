@@ -29,7 +29,7 @@ XRAMEN EQU 1  ; 0 = Disable on-chip XDATA RAM
 ;
 ; <e> EXSP: Enable extended XRAM stack (16-bit Stack Pointer)
 ;           <i> NOTE: The Extended Stack Mode works only with enabled on-chip XDATA RAM!
-EXSP EQU 0  ; 0 = 8-bit stack pointer in IDATA
+EXSP EQU 1  ; 0 = 8-bit stack pointer in IDATA
 ;             1 = 16-bit stack pointer in XDATA
 ;
 ; CPU Stack Size Definition in Extended Stack Mode:
@@ -42,7 +42,7 @@ EXSP EQU 0  ; 0 = 8-bit stack pointer in IDATA
 ; 100H. 
 ;
 ;   <o> STACKSIZE: Size of extended XRAM stack <0x0-0xFFFF>
-STACKSIZE   EQU 0FFH             ; set to 200H Bytes.
+STACKSIZE   EQU 1FFH             ; set to 200H Bytes.
 ;   <o> XSTACKSTART: End address of extended XRAM stack <0x0100-0xFFFF>
 ;       <i> Must be at least 0x100 larger than STACKSIZE value.
 XSTACKSTART EQU 0x800 - STACKSIZE ; 800H is top of on-chip XRAM.
@@ -58,7 +58,7 @@ XSTACKSTART EQU 0x800 - STACKSIZE ; 800H is top of on-chip XRAM.
 ; <o> IDATALEN: IDATA memory size <0x0-0x100>
 ;     <i> Note: The absolute start address of IDATA memory is always 0
 ;     <i>       The IDATA space physically overlaps the DATA and BIT areas.
-IDATALEN	EQU	80H	; the length of IDATA memory in bytes.
+IDATALEN	EQU	0x80	; the length of IDATA memory in bytes.
 ;
 ; <o> XDATASTART: XDATA memory start <0x0-0xFFFF> 
 ;     <i> The absolute start address of XDATA memory.

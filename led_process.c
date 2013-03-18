@@ -22,12 +22,12 @@ unsigned long  integer_num=0;
 
 extern  struct SKD xdata skd ;
 //----------------------------------------------
- unsigned int indicator_brightness[INDICATOR_NUM]={0xA0F};//,0xA0F,0xA0F,0xA0F};
- unsigned int indicator_scan[INDICATOR_NUM]={0xB04};//,0xB07,0xB04,0xB04};
- unsigned char indicator_point[INDICATOR_NUM]={0x5};//,0x0,0x5,0x5};
- unsigned char indicator_blink[INDICATOR_NUM]={0x0};//,0x0,0x0,0x0};
- unsigned char indicator_blink_flag[INDICATOR_NUM]={0x1};//,0x0,0x0,0x0};
- unsigned int indicator_decode[INDICATOR_NUM]={0x9FF};//,0x900,0x9FF,0x9FF};
+volatile unsigned int indicator_brightness[INDICATOR_NUM]={0xA0F};//,0xA0F,0xA0F,0xA0F};
+volatile unsigned int indicator_scan[INDICATOR_NUM]={0xB04};//,0xB07,0xB04,0xB04};
+volatile unsigned char indicator_point[INDICATOR_NUM]={0x5};//,0x0,0x5,0x5};
+volatile unsigned char indicator_blink[INDICATOR_NUM]={0x0};//,0x0,0x0,0x0};
+volatile unsigned char indicator_blink_flag[INDICATOR_NUM]={0x1};//,0x0,0x0,0x0};
+volatile unsigned int indicator_decode[INDICATOR_NUM]={0x9FF};//,0x900,0x9FF,0x9FF};
 
  long  indicator_buf[INDICATOR_NUM];//буфер значений индикаторов
 
@@ -198,7 +198,15 @@ PT_THREAD(LED_Process(struct pt *pt))
 				spi_data=spi_buf[spi_buf_counter];
 				for(spi_bit_counter=0;spi_bit_counter<16;spi_bit_counter++)
 				{
-					WR_DATA=spi_data&0x8000;	
+					//WR_DATA=spi_data&0x8000;
+					if(spi_data&0x8000)	
+					{
+						WR_DATA=1;
+					}
+					else
+					{
+						WR_DATA=0;
+					}
 					spi_data=spi_data<<1;//
 					//WR_DATA=CY;
 					CLK=1;
@@ -288,8 +296,10 @@ PT_THREAD(LED_Process(struct pt *pt))
 ////--------------------------------------------------------------------------------
 void LED_Out_Float(unsigned char  display_num,float  num)//вывод значения с плавающей точкой  //не реализовано
 {
- 	unsigned int pwr=1;
-	unsigned char i;
+ 	static unsigned int pwr=1;
+	static unsigned char i;
+
+	pwr=1;
 
 	for(i=0;i<(indicator_point[display_num]-1);i++) //возводим 10 в степень положения точки
 	{

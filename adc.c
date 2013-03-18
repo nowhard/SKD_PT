@@ -1,6 +1,6 @@
 #include "adc.h"
 //-------------------------------------------
-void ADC_Initialize() //using 0
+void ADC_Initialize() //using 2
 {	
 	ADCMODE&=0x0;
 	ADC0CON1&=0x0;	
