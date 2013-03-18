@@ -22,7 +22,7 @@
 extern volatile unsigned char  SHOW_VOLTAGE;
 sbit BUTTON1=P2^4;
 sbit BUTTON2=P2^5;
-volatile struct  pt data pt_display,pt_led,pt_key,pt_blink;
+volatile struct  pt  pt_display,pt_led,pt_key,pt_blink;
 
 extern  struct SKD xdata skd ;
 extern  struct pt pt_proto;
@@ -30,135 +30,135 @@ extern  struct pt pt_proto;
 //-----------------------------------------
 static PT_THREAD(Display_Out_Process(struct pt *pt));
 //------------------------------------------------
-volatile struct  pt ptest1,ptest2,ptest3,ptest4,ptest5,ptest6,ptest7,ptest8;
-PT_THREAD(PTEST1(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST2(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST3(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST4(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST5(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST6(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST7(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
-PT_THREAD(PTEST8(struct pt *pt))
-{
-   PT_BEGIN(pt);
-
-  while(1) {
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  PT_YIELD(pt);
-  }
-  PT_END(pt);		
-}
+//volatile struct  pt ptest1,ptest2,ptest3,ptest4,ptest5,ptest6,ptest7,ptest8;
+//PT_THREAD(PTEST1(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST2(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST3(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST4(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST5(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST6(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST7(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
+//PT_THREAD(PTEST8(struct pt *pt))
+//{
+//   PT_BEGIN(pt);
+//
+//  while(1) {
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  PT_YIELD(pt);
+//  }
+//  PT_END(pt);		
+//}
 
 //---------------------------------------
 
@@ -191,15 +191,15 @@ void main(void) //using 0
 	PT_INIT(&pt_key);
 	PT_INIT(&pt_blink);
 
-	//----------------
-	 PT_INIT(&ptest1);
-	 PT_INIT(&ptest2);
-	 PT_INIT(&ptest3);
-	 PT_INIT(&ptest4);
-	 PT_INIT(&ptest5);
-	 PT_INIT(&ptest6);
-	 PT_INIT(&ptest7);
-	 PT_INIT(&ptest8);
+//	//----------------
+//	 PT_INIT(&ptest1);
+//	 PT_INIT(&ptest2);
+//	 PT_INIT(&ptest3);
+//	 PT_INIT(&ptest4);
+//	 PT_INIT(&ptest5);
+//	 PT_INIT(&ptest6);
+//	 PT_INIT(&ptest7);
+//	 PT_INIT(&ptest8);
 	//----------------
 
  	if(!SHOW_VOLTAGE)
@@ -225,7 +225,7 @@ void main(void) //using 0
 	while(1)
 	{		
 		LED_Process(&pt_led);
-	PTEST1(&ptest1);
+//	PTEST1(&ptest1);
 		Display_Out_Process(&pt_display);
 
 
@@ -233,21 +233,21 @@ void main(void) //using 0
 
 
 
-PTEST6(&ptest6);
-PTEST7(&ptest7);
-PTEST8(&ptest8);
+//PTEST6(&ptest6);
+//PTEST7(&ptest7);
+//PTEST8(&ptest8);
 
 		Keyboard_Process(&pt_key);
-  PTEST2(&ptest2);
+//  PTEST2(&ptest2);
 		ProtoProcess(&pt_proto);
-  PTEST3(&ptest3);
+//  PTEST3(&ptest3);
 		LED_BlinkTask(&pt_blink);
-  PTEST4(&ptest4);
+//  PTEST4(&ptest4);
 		if(SHOW_VOLTAGE)
 		{
 			BUTTON2^=1;	
 		}
-  PTEST5(&ptest5);
+//  PTEST5(&ptest5);
 	//	WDT_Clear();
 	}
 }

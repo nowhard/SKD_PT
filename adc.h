@@ -57,8 +57,8 @@
 #define ADC_UNIPOLAR	0x20//унипол€рный режим
 #define ADC_BIPOLAR		0x0//бипол€рный режим
 //-----------------------------------------------------------
-#define SENSOR_CHANNEL		AIN7_AIN8//каналы ацп датчика и €ркости...настроить
-#define BRIGHTNESS_CHANNEL	AIN5_AIN6
+#define SENSOR_CHANNEL		AIN1_AIN2//каналы ацп датчика и €ркости...настроить
+#define BRIGHTNESS_CHANNEL	AIN3_AIN4
 #define BRIGHTNESS_RANGE		RN_2560//канал -2.56V
 #define LINE_SENSOR_RANGE	RN_2560//канал -2.56V
 //-----------------------------------------------------------
