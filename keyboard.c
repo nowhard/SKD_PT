@@ -3,8 +3,8 @@
 #include "calibrate/calibrate.h"
 
 
-sbit BUTTON1=P3^2;
-sbit BUTTON2=P3^3;
+sbit BUTTON1=P2^4;
+sbit BUTTON2=P2^5;
 
  unsigned char  SHOW_VOLTAGE=0;
 

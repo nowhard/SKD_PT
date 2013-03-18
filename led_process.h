@@ -7,7 +7,7 @@
 
 #define INDICATOR_NUM	1
 
-sbit CS_1=P0^5;
+sbit CS_1=P2^3;
 //sbit CS_2=P2^4;
 //sbit CS_3=P2^5;
 //sbit CS_4=P2^6;
