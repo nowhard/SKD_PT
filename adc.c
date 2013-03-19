@@ -15,7 +15,6 @@ void ADC_Initialize() //using 0
 	ADC0CON1|=RN_2560;
 
 
-//	ADC_Restore_Settings();
 	ADC_Set_Mode(ADC_CONTIN_CONV);
 
 	ADC_Out_Freq(80);

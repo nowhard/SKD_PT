@@ -1,5 +1,5 @@
 #include "eeprom.h"
- sbit LED=P3^7;
+
  //----------------------------------------------------------------------------------
 unsigned int  EEPROM_Write(void *buffer,unsigned int len,unsigned int addr) //using 0//записать буфер по адресу
 {
@@ -9,7 +9,7 @@ unsigned int  EEPROM_Write(void *buffer,unsigned int len,unsigned int addr) //us
 						   
   if (addr+len>= EEMEM_SIZE) //если адрес выходит за границы
   	return (0UL);
-//LED=1;
+
 	buf=buffer;
 
    for(i=0;i<len;i++)
@@ -26,7 +26,7 @@ unsigned int  EEPROM_Write(void *buffer,unsigned int len,unsigned int addr) //us
 	  
 	   addr++;
    }
-//LED=0;
+
    return i;
 }
 //----------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ unsigned int EEPROM_Read(void *buffer,unsigned int len,unsigned int addr) //usin
 
   unsigned int  i=0;
   unsigned char *buf;
-//LED=1;
+
   if (addr+len>= EEMEM_SIZE) //если адрес выходит за границы
   	return (0UL);
 
@@ -53,7 +53,7 @@ unsigned int EEPROM_Read(void *buffer,unsigned int len,unsigned int addr) //usin
 	   buf[i*4+3]=EDATA4; 
 	   addr++;
    }  
-//LED=0;
+
    return i;
 }
 

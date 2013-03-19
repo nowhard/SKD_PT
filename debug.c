@@ -32,8 +32,7 @@ static PT_THREAD(Display_Out_Process(struct pt *pt));
 //---------------------------------------
 
 void main(void) //using 0
-{			   
-	
+{			   	
 	EA = 0;
 		
 	PLLCON&=PLLCON_VAL;//настройка частоты процессора
@@ -50,7 +49,7 @@ void main(void) //using 0
 	ChannelsInit();
 	UART_Init();
 
-//	WDT_Init(WDT_250);//включить сторожевой таймер
+	WDT_Init(WDT_250);//включить сторожевой таймер
 
 
 
@@ -87,7 +86,7 @@ void main(void) //using 0
 		Keyboard_Process(&pt_key);
 		ProtoProcess(&pt_proto);
 		LED_BlinkTask(&pt_blink);
-	//	WDT_Clear();
+		WDT_Clear();
 	}
 }
 //-----------------------------------------------------------------------------
