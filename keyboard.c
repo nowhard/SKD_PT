@@ -31,7 +31,7 @@ PT_THREAD(Keyboard_Process(struct pt *pt))//процесс обработки клавиатуры
 			if(!BUTTON1)
 			{
 			  	Calibrate(1);
-				PT_WAIT_WHILE(pt,BUTTON1);
+				PT_WAIT_UNTIL(pt,BUTTON1);
 
 			}			
 		}
@@ -42,7 +42,7 @@ PT_THREAD(Keyboard_Process(struct pt *pt))//процесс обработки клавиатуры
 			if(!BUTTON2)
 			{
 			  	Calibrate(2);
-				PT_WAIT_WHILE(pt,BUTTON2);
+				PT_WAIT_UNTIL(pt,BUTTON2);
 			}	
 		}
 		PT_RESTART(pt);		
