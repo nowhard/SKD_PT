@@ -96,7 +96,9 @@ void ADC_Out_Freq(unsigned int freq)  // using 0
  void Meaning_Process(void)//циклический процесс, получающий среднее значение массивов
  {
  	//реализовать
+
 	skd.line_sensor=Meaning(&skd.ADC_SENSOR_UN,SENSOR_QUEUE_LEN);//находим усредненное значение на датчике
+	skd.line_sensor-=((long)MAX_CORRECT_COEF*skd.brightness/0xFF);//поправка падения напряжения на опоре(плавание результата от яркости индикатора)
  }
  //----------------------------------------------------------------------------------------------
 //  #pragma OT(0,Speed) 

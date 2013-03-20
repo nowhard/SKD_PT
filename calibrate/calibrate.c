@@ -31,6 +31,7 @@ void Calibrate(unsigned char point) //общая функция калибровки
 float GetCalibrateVal(long ADC_Code)   //преобразование значения АЦП в калиброванное значение	 ??? проверить && debug
 {
   	float   val=0;//плотность
+
 	val=(((float)((float)(ADC_Code-skd.SKD_Set.SKD_Settings.adc_calibr_low)/(float)(skd.SKD_Set.SKD_Settings.adc_calibr_high-skd.SKD_Set.SKD_Settings.adc_calibr_low)))*(float)(skd.SKD_Set.SKD_Settings.calibr_high-skd.SKD_Set.SKD_Settings.calibr_low))+skd.SKD_Set.SKD_Settings.calibr_low; //формула калибровки по 2м точкам
 	return val;
 }
