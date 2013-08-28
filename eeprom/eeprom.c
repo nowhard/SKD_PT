@@ -6,6 +6,7 @@ unsigned int  EEPROM_Write(void *buffer,unsigned int len,unsigned int addr) //us
 //небезопасная
   unsigned int i=0;
   unsigned char *buf;
+  unsigned char ea_temp=0;
 						   
   if (addr+len>= EEMEM_SIZE) //если адрес выходит за границы
   	return (0UL);
@@ -14,6 +15,9 @@ unsigned int  EEPROM_Write(void *buffer,unsigned int len,unsigned int addr) //us
 
    for(i=0;i<len;i++)
    {	   
+   		ea_temp=EA;
+		EA=0;		   
+
 	   EDATA1=buf[i*4]; 
 	   EDATA2=buf[i*4+1]; 
 	   EDATA3=buf[i*4+2]; 
@@ -23,6 +27,8 @@ unsigned int  EEPROM_Write(void *buffer,unsigned int len,unsigned int addr) //us
 
 	   ECON=EE_ERASE_PAGE;
    	   ECON=EE_WRITE_PAGE;
+
+	   EA=ea_temp;
 	  
 	   addr++;
    }
@@ -36,6 +42,7 @@ unsigned int EEPROM_Read(void *buffer,unsigned int len,unsigned int addr) //usin
 
   unsigned int  i=0;
   unsigned char *buf;
+  unsigned char ea_temp=0;
 
   if (addr+len>= EEMEM_SIZE) //если адрес выходит за границы
   	return (0UL);
@@ -44,6 +51,9 @@ unsigned int EEPROM_Read(void *buffer,unsigned int len,unsigned int addr) //usin
   	
    for(i=0;i<len;i++)
    {
+       ea_temp=EA;
+	   EA=0;
+
    	   EADR=addr;
    	   ECON=EE_READ_PAGE;
 	   
@@ -51,6 +61,9 @@ unsigned int EEPROM_Read(void *buffer,unsigned int len,unsigned int addr) //usin
 	   buf[i*4+1]=EDATA2; 
 	   buf[i*4+2]=EDATA3; 
 	   buf[i*4+3]=EDATA4; 
+
+	   EA=ea_temp;
+
 	   addr++;
    }  
 
