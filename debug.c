@@ -118,22 +118,24 @@ static PT_THREAD(Display_Out_Process(struct pt *pt))
 	{
 		   val=GetCalibrateVal(skd.line_sensor);
 
-		   if((val<skd.SKD_Set.SKD_Settings.diap_low)||(val>skd.SKD_Set.SKD_Settings.diap_high))
+		   if(/*(val<skd.SKD_Set.SKD_Settings.diap_low)||*/(val>skd.SKD_Set.SKD_Settings.diap_high))
 		   {
-		   		LED_SetBlink(INDICATOR_1,1);
-				LED_Set_Brightness(INDICATOR_1,0xF);
-				if(val<skd.SKD_Set.SKD_Settings.diap_low)
-				{
-					val=skd.SKD_Set.SKD_Settings.diap_low;
-				}	
 
-				if(val>skd.SKD_Set.SKD_Settings.diap_high)
-				{
+	
+
+			//	if(val>skd.SKD_Set.SKD_Settings.diap_high)
+			//	{
+					LED_SetBlink(INDICATOR_1,1);
+					LED_Set_Brightness(INDICATOR_1,0xF);
 					val=skd.SKD_Set.SKD_Settings.diap_high;
-				}
+			//	}
 		   }
 		   else
 		   {
+		   		if(val<skd.SKD_Set.SKD_Settings.diap_low)
+				{
+					val=skd.SKD_Set.SKD_Settings.diap_low;
+				}
 		   		LED_SetBlink(INDICATOR_1,0);
 		   }
 		   
